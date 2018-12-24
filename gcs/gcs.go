@@ -11,12 +11,14 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"sync"
 
 	"cloud.google.com/go/storage"
 )
 
 var (
-	client *storage.Client
+	client      *storage.Client
+	clientMutex = new(sync.Mutex)
 )
 
 func init() {
@@ -27,6 +29,8 @@ func init() {
 
 func getClient() (c *storage.Client, ctx context.Context, err error) {
 
+	clientMutex.Lock()
+
 	ctx = context.Background()
 
 	if client == nil {
@@ -36,6 +40,8 @@ func getClient() (c *storage.Client, ctx context.Context, err error) {
 			return client, ctx, nil
 		}
 	}
+
+	clientMutex.Unlock()
 
 	return client, ctx, nil
 }
