@@ -1,4 +1,4 @@
-module google-cloud-storage-go
+module github.com/Jleagle/google-cloud-storage-go
 
 require (
 	cloud.google.com/go v0.34.0

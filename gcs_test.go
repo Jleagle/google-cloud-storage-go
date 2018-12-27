@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	"google-cloud-storage-go/gcs"
+	"github.com/Jleagle/google-cloud-storage-go/gcs"
 )
 
 // Tests require you to manually create the bucket first
